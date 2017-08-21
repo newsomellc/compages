@@ -1,0 +1,62 @@
+extends modal
+block vars
+	- var classes = ['item']
+block header
+	h4 Editing 
+		strong #{item.___item_title}
+
+block body
+	#messages-item
+		
+
+	.col-12
+		each field, id in crud.fields
+			label(for=field.id)=field.name
+			if (field.help_text)
+				p.help-text=field.help_text
+			div(crud=crud.id crud-pk=item.getPK() crud-field=field.id)
+	//-.col-12.col-md-4
+		each fieldset in data.getFieldSetsAt('secondary')
+			fieldset.fieldset(id=fieldset.id)
+				//-legend
+					h4=fieldset.name
+					if fieldset.help_text
+						span fieldset.help_text
+				each field in fieldset.fields
+					label(for=field.id)=field.name
+					if (field.help_text)
+						p.help-text=field.help_text
+					!= field.render('form', item, req)
+
+	//-.col-12.col-md-8.flex-md-first
+		each fieldset in data.getFieldSetsAt('primary')
+			fieldset.fieldset(id=fieldset.id)
+				legend
+					h4=fieldset.name
+					if fieldset.help_text
+						span fieldset.help_text
+				each field in fieldset.fields
+					label(for=field.id)=field.name
+					!= field.render('form', item, req)
+					if (field.help_text)
+						p.help-text=field.help_text
+
+	//-.col-12
+		each fieldset in data.getFieldSetsAt('bottom')
+			fieldset.fieldset(id=fieldset.id)
+				legend
+					h4=fieldset.name
+					if fieldset.help_text
+						span fieldset.help_text
+				each field in fieldset.fields
+					label(for=field.id)=field.name
+						if (field.help_text)
+							p.help-text=field.help_text
+					!= field.render('form', item, req)
+
+block footer
+	each action in crud.actions
+		button.btn.btn-default(type='button' data-crud-action=action.id)=action.name
+
+	button.btn.btn-default(type='button' data-dismiss='modal') Close
+	button.btn.btn-success.disabled(type='button' data-crud-action='save') Save

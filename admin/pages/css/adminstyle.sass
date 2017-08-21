@@ -1,0 +1,286 @@
+@import "_config.sass"
+//dt bs
+@import "dataTables.bootstrap.scss"
+@import "selectize.bootstrap.scss"
+@import "../../../../node_modules/bootstrap/scss/bootstrap.scss"
+
+body
+	background : #EEE
+	min-height : 100%
+
+h1
+	font-size: 1.8rem
+h2
+	font-size: 1.6rem
+h3
+	font-size : 1.4rem
+h4
+	font-size : 1.25rem
+
+#user-welcome
+	font-size : 1.3rem
+
+#header
+	h1, h2, h3, h4
+		display : inline
+
+nav
+	background-color: #fcc316
+	ul
+		li
+			display      : inline
+			margin-right : 1rem
+			h4
+				display : inline
+
+#messages-body
+	#messages
+		position : absolute
+		z-index  : 1020
+		width    : 100%
+		.alert
+			width    : 90vw
+			margin   : 0 auto
+			margin-top : .7rem
+
+#content
+	padding : 1rem 1rem
+
+.actions
+	display : inline-block
+	width   : 18rem
+
+.action-green
+	background : rgba(120,255,120,.5)
+
+.action-red
+	background : rgba(255,120,120,.5)
+
+/**
+ * Form stuff
+ */
+.help-text
+	color      : rgba(0,0,0,.5)
+	font-size  : .75rem
+	text-align : right
+
+
+/**
+ * Styles specific to the change list
+ */
+.list-icons
+	width     : 3rem
+	font-size : .5rem
+	a, a:link
+		color : #000
+
+	img
+		width  : 1.5rem
+		height : 1.5rem
+
+/**
+ * The long lost switch checkbox.
+ */ 
+
+input.switch
+	display: none
+
+input.switch:empty
+
+input.switch:empty ~ label	
+	width               : 100%
+	position            : relative
+	display             : block
+	cursor              : pointer
+	user-select         : none
+	-webkit-user-select : none
+	-moz-user-select    : none
+	height              : 3rem
+	
+//Agh so many pixel sizes :TODO convert to REM or VW units.
+input.switch:empty ~ label:before
+	content       : ' '
+	width         : 100%
+	height        : 3rem
+	border-radius : 1.5rem
+	position      : absolute
+	top           : 0
+	background    : rgba(200,200,200,1)
+	display       : block
+	border        : solid rgba(200,200,200,1) 5px
+	box-sizing    : border-box
+	transition    : all 200ms ease-in
+input.switch:empty ~ label:after
+	content       : 'off'
+	position      : absolute
+	top           : .5rem
+	left          : .5rem
+	background    : rgba(255,255,255,1)
+	width         : 20%
+	height        : 2rem
+	border-radius : 1rem
+	display       : block
+	box-sizing    : border-box
+	transition    : all 200ms ease-in
+	text-align    : center
+	text-transform: uppercase
+	font-weight   : bold
+
+input.switch:checked ~ label:before
+	background : rgba(100,190,100,1)
+	border     : solid rgba(100,190,100,1) 5px
+
+input.switch:checked ~ label:after
+	left    : calc(80% - 1rem)
+	content : 'on'
+
+
+.media-preview
+	width  : 100%
+	height : auto
+
+.media-icon
+	width : 5rem
+
+//Set the REM unit size
+html, body
+	font-size : rem-unit-size(sm)
+
+@each $size in sm md lg xl
+	@media only screen and (min-width : breakpoint($size))
+		html, body
+			font-size : rem-unit-size($size)
+
+
+
+.mediafile_preview
+	height : 2rem
+	border : .01rem black solid
+
+#body_copy
+	height : 25rem
+
+
+#dropzone
+	height       : 100%
+	width        : 100%
+	padding      : 5rem;
+	position     : absolute
+	top          : 0
+	left         : 0
+	//visibility : hidden
+	z-index      : 1080
+	text-align   : center
+	color        : #fff
+	visibility   : hidden
+	div
+		pointer-events   : none
+		height           : 100%
+		border-radius    : 5rem
+		border-width     : .25rem
+		border-style     : dashed
+		border-color     : rgba(30, 30, 255, .8);
+		background-color : rgba(30, 30, 255, .4);
+		vertical-align   : middle
+		padding-top       : 30%
+
+#progress
+	position   : fixed
+	bottom     : 1rem
+	right      : 1rem
+	width      : 40vw
+	display    : none
+	background : #aaa
+	border     : 2px solid black
+	z-index    : 10
+	.progress-header
+		height       : 2rem
+		display      : flex
+		text-align   : center
+		background   : #11f
+		color        : white
+		border       : solid white
+		border-width : 0 0 .3rem 0
+		h4 
+			flex-shrink : 1
+			width : 100%
+			display     : inline-block
+		.dismiss-all
+			width      : 2rem
+			background : #F00
+			color      : white
+			display    : inline-block
+	.percent, .uploaded, .to-go, .dismiss
+		height : 1rem
+	.progress-indicator
+		display    : flex
+		margin-top : .2rem
+		.percent
+			width       : 100%
+			display     : inline-block
+			position    : relative
+			flex-shrink : 1
+			line-height : 1rem
+			span 
+				color      : white
+				position   : absolute
+				width      : 100%
+				text-align : center
+				display    : block
+			.uploaded
+				background : #00F
+				width      : 0%
+				display    : inline-block
+		.dismiss
+			display     : inline-block
+			flex-shrink : 0
+			width       : 1rem
+			background  : #F00
+			color : white
+
+#basic-controls
+	width : 100%
+	#bc-page-grp
+		width : 100%
+
+.modal-dialog.item
+	width     : 90vw
+	max-width : 90vw
+
+table
+	width : 100%
+	border : .01rem solid black
+	th
+		background : #aaf
+		border     : .01rem solid black
+		text-align : center
+	tr
+		border-top   : .01rem solid black
+	td
+		border-right : .01rem solid black
+	tr:nth-child(odd)
+		background-color : #eef
+	tr:nth-child(even)
+		background-color : #ccf;
+	td:hover
+		background-color : rgba(255,255,255,.5)
+	th:hover
+		background-color : rgba(255,255,255,.9)
+
+	.sortable
+		display : block
+		cursor : pointer
+	.sortable.sorted
+		font-weight : bold
+	.sortable.sorted.desc
+	.sortable.sorted::after
+		content    : '^' //todo get a nice glyphicon for this
+		text-align : right;
+	.sortable.sorted.desc::after
+		content : 'V'
+
+.selectize_floater
+	width      : 5rem
+	text-align : center
+	img
+		width : 100%

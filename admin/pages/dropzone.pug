@@ -1,0 +1,8 @@
+div
+	h2 Drop Files Here
+	if (!attached_to_id)
+		p to upload to #{media_name}
+	else
+		p to upload to 
+			strong #{attached_to_name} 
+			| in #{media_name}

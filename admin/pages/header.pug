@@ -1,0 +1,30 @@
+nav.sticky-top.navbar.navbar-toggleable-md.navbar-light.bg-faded
+	button.navbar-toggler.navbar-toggler-right(
+		data-toggle   ='collapse'
+		data-target   ='#main-dd'
+		aria-controls ='main-dd'
+		aria-expanded ='false'
+		aria-label    ='Toggle navigation'
+		)
+		.navbar-toggler-icon
+	.navbar-brand
+		a(href=reverse([]))
+			h1=name
+	#main-dd.collapse.navbar-collapse.justify-content-between
+		if (user)
+			span#user-welcome.navbar-text.flex-md-last=`Welcome, ${user.first_name} ${user.last_name}`
+				button.btn.btn-default.logout-request(href=reverse('logout')) Log Out
+			ul.navbar-nav
+				if (crud_root)
+					each crud, id in crud_root.children
+						li.nav-item.nav-link: .btn-group.dropdown
+							a.btn.btn-secondary( href=reverse(crud.path) aria-haspopup="true" aria-expanded="false" id=`menu-${crud.id}` admin_id=crud.id)=crud.name_plural
+							if (crud.children)
+								button.btn.btn-primary.dropdown-toggle(data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+								.dropdown-menu.fade.show(aria-labelledby=`menu-${crud.id}` aria-haspopup='true' aria-expanded='false')
+									each _crud in crud.children
+										a.dropdown-item.nav-link(href=reverse(_crud) admin_id=_crud.id)=_crud.name_plural
+		else
+			ul.navbar-nav
+			button.btn.btn-default.login-request(href=reverse('login')) Log In
+

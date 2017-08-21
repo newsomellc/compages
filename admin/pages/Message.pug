@@ -1,0 +1,6 @@
+.alert.alert-dismissible(role='alert' class=`alert-${mclass}` data-dismiss='alert').fade.show
+	button.close(type='button' data-dismiss='alert' aria-label='Close')
+		span(aria-hidden="true") &times;
+
+	h3=title
+	!=message

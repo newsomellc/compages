@@ -1,0 +1,27 @@
+extends mainpane
+
+block append vars
+	- title = crud.name_plural
+	- classes.push('list-view')
+
+block body
+	table.display.crudTable
+		thead: tr
+			//-empty th for icons
+			th
+			each field in crud.getColumns(query.columns)
+				th!=field.render('column')
+		tbody
+			if (items && items.length)
+				each item in items
+					tr
+						td.list-icons: a(href=reverse(crud, item) item_id=item.getPK())
+							img.list-icon(src='/static/edit.svg')
+							span Edit
+							each field in crud.getColumns(query.columns)
+								td!=field.render('cell', item, user, q)
+		tfoot: tr
+			//-empty th for icons
+			th 
+			each field in crud.getColumns(query.columns)
+				th!=field.render('column')

@@ -1,0 +1,65 @@
+.row 
+	#bc-new.btn-group-sm.col-3
+		button.btn.btn-success(role='button' item_id='new' href=reverse(crud, 'new'))=`New ${crud.name}...`
+
+	.col-7
+
+	#bc-search-grp.input-group.input-group-sm.col-2
+		label.input-group-addon(for='admin-per-page') Search
+		input#admin-per-page.form-control(type='text' value=query.search)
+	//-#bc-actions.input-group-btn.col-12
+		label.input-group-addon.col-3(for='admin-per-page') With #{crud.item}
+		
+		.col-6
+			select.actions.input-group-btn
+				option Select...
+				each aid, action in crud.actions
+					option.action(name=action.id value=action.id class=action.classes.join(' ')+' form-control')
+						=action.name
+		button.btn.btn-primary.action-go.col3(type='submit') Go
+
+	-var sel_cols = crud.getHideableColumns()
+	if (sel_cols.length)
+		#bc-cols-selector.col-1.dropdown.btn-group.btn-group-sm
+			#cols-selector.btn.btn-secondary Show columns
+			.dropdown-toggle.btn.btn-primary(data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+			ul.dropdown-menu(aria-labelledby='bc-cols-selector' aria-haspopup='true' aria-expanded='false')
+				each column in sel_cols
+					li.dropdown-item: label(for=`column-toggle-${column.id}`)
+							input(admin-column-toggle=column.id type='checkbox' id=`column-toggle-${column.id}` checked=crud.getColumns(query.columns).indexOf(column)>-1)
+							span=column.name
+
+	if (query.item_total > query.page_items)
+		-
+			var n        = 0;
+			var lastp    = Math.max(1,Math.floor(query.item_total/query.page_items));
+			var on_lastp = false;
+			var start    = 1;
+
+			if (query.page > 10)
+				start = Math.max(1, query.page - 10);
+			if (query.page===lastp)
+			{
+				start    = Math.max(1, start -1);
+				on_lastp = true;
+			}
+		#bc-page-grp.btn-group.btn-group-sm(role='group' aria-label='Pagination').col-12.justify-content-center
+			button.btn(type='button' admin-page=0 class=query.page===0?'btn-primary disabled':'btn-secondary')=`1 <<`
+			if lastp > 2
+				while n < Math.min(lastp-1, 10)
+					- var curr = n++ + start
+					button.btn(type='button' admin-page=curr class=curr==query.page?'btn-primary disabled':'btn-secondary')=curr + 1
+			if lastp > 1
+				button.btn(type='button' admin-page=lastp class=on_lastp?'btn-primary disabled':'btn-secondary')=`>> ${lastp+1}`
+		#bc-per-page-grp.col-12.row
+			.col-4
+			.col-4.row: .input-group.input-group-sm
+				label.input-group-addon.col-4(for='admin-per-page') Items per page:
+				input#admin-per-page.form-control.col-3(type='number' value=query.page_items)
+				label.input-group-addon.col-5 #{query.item_total} #{query.item_total === 1 ? crud.name : crud.name_plural} total
+			.col-4
+	#bc-filters-grp.col-12
+		.filters
+			//-each fid, filter in crud.filters
+				!=filter.render()
+	

@@ -1,0 +1,28 @@
+doctype html
+html(lang='en')
+	title=name
+		if (data)
+			=`: ${data.name_plural}`
+
+	link(rel ='stylesheet' href=env==='development'?'/css/adminstyle.css':'/css/adminstyle.compiled.css')
+	
+	header#header
+		include header
+	
+	#messages-body
+		#messages
+
+	#modal.modal(role='dialog')
+
+	#progress
+
+	section#content.container-fluid
+		#mainpane
+			include default
+
+	#dropzone
+
+	footer#footer.container-fluid
+
+	script(src=env==='development'?'/js/index.js':'/js/index.compiled.js')
+

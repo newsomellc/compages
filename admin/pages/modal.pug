@@ -1,0 +1,20 @@
+block vars
+	-
+		if (!title)
+			var title = 'Default Title (override in subtemplate)';
+		if (!classes)
+			var classes = [];
+
+.modal-dialog(role='document' class=classes.join(' '))
+	.modal-content
+		.modal-header
+			block header
+				h4=title
+			button.close(type='button' data-dismiss='modal') &times;
+		.modal-body
+			block body
+				p Default message here.
+		.modal-footer
+			block footer
+				button.btn.btn-default(type='button' data-dismiss='modal') Close
+

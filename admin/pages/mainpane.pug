@@ -1,0 +1,19 @@
+block vars
+	- var title   = 'Default Heading (set title var in extending template)'
+	- var classes = ['main-view']
+
+h2=title
+if (Object.keys(crud.children).length)
+	#crud-child-tabs: .col-12: ul.nav.nav-tabs.list-inline
+		li.active=crud.name
+		each _crud in crud.children
+			li: a(href=reverse(_crud) admin_id=_crud.id)=_crud.name
+
+#basic-controls
+	include basic-controls
+
+div(class=classes.join(' '))
+	block body
+	
+#basic-controls
+	include basic-controls

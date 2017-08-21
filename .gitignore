@@ -1,0 +1,15 @@
+node_modules
+npm-debug.log
+volatile
+media/lots
+media/homesites
+media/journal
+media/gallery
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+#WebStorm IDE
+.idea/*

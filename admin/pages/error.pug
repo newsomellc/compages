@@ -1,0 +1,14 @@
+doctype html
+html(lang='en')
+	title=error.message
+
+	link(rel ='stylesheet' href=env==='development'?'/css/adminstyle.css':'/css/adminstyle.compiled.css')
+	
+	div
+		h1=error.message
+		if (error.stack)
+			pre=error.stack
+	
+
+	script(src=env==='development'?'/js/index.js':'/js/index.compiled.js')
+

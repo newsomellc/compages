@@ -1,0 +1,14 @@
+.progress-header
+	h4 upload status
+	.dismiss-all &times;
+each p in queue
+	.progress-indicator
+
+		.percent
+			span
+				if (p.completed == p.size)
+					| #{p.name} upload complete.
+				else
+					| Uploading #{p.name} #{Math.floor(p.completed / p.size * 100)}% done.
+			.uploaded(style=`width: ${Math.floor(p.completed / p.size * 100)}%;`)
+		.dismiss(queue_id=p.idx) &times;

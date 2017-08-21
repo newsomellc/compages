@@ -1,0 +1,36 @@
+/* This is by far THE most important config.  Anywhere you define a size in REM units, this will scale it. */
+
+@function rem-unit-size ($size)
+	@if $size == xs
+		@return 12px
+	@if $size == sm
+		@return 13px
+	@if $size == md
+		@return 13px
+	@if $size == lg
+		@return 14px
+	@if $size == xl
+		@return 16px
+
+//the height of the top bar, so that items can position themselves in such a way to avoid them.
+$topbar-height : 5rem
+
+//Pixel breakpoints, where the media queries draw the line to change page flow and layout.
+@function breakpoint ($size)
+	@if $size == xs
+		@return 0
+	@if $size == sm
+		@return 576px
+	@if $size == md
+		@return 768px
+	@if $size == lg
+		@return 992px
+	@if $size == xl
+		@return 1200px
+
+
+//Debug stuff-- colorizing sections etc.
+$debug : true
+
+//BOOTSTRAP config
+$grid-gutter-width-base : 0 //finally, getting rid of gutters!

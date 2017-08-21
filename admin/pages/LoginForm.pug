@@ -1,0 +1,13 @@
+extends modal
+block vars
+	- title = 'Log In';
+	- classes.push('login');
+
+block body
+	p(class=`msg-info`)=message
+	input.form-control(name='username', id='username', type='text' placeholder='User Name or Email')
+	input.form-control(name='password', id='password' type='password' placeholder='Password')
+
+block footer
+	button#login-btn.btn.btn-primary(type='button' data-dismiss='modal') Log In
+	button#login-btn-dismiss.btn.btn-default(type='button' data-dismiss='modal') Close
