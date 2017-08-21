@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/newsomellc/compages.git"
+    "url": "https://github.com/newsomellc/compages"
   },
   "keywords": [
     "static site generator",
