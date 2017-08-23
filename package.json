@@ -14,6 +14,9 @@
     "static site generator",
     "cms"
   ],
+  "bin": {
+    "compages": "cli.js"
+  },
   "dependencies": {
     "ansi-to-html": "^0.6.2",
     "babel-cli": "^6.24.1",
@@ -27,6 +30,7 @@
     "browserify-middleware": "^7.1.0",
     "chai": "^4.0.2",
     "chai-as-promised": "^7.0.0",
+    "chalk": "^2.1.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "dateformat": "^2.0.0",
@@ -44,8 +48,10 @@
     "knex": "^0.13.0",
     "knex-postgis": "^0.2.2",
     "lob": "^4.0.0",
+    "lodash": "^4.17.4",
     "md5-file": "^3.1.1",
     "merge-stream": "^1.0.1",
+    "minimist": "^1.2.0",
     "mkdir-recursive": "^0.3.0",
     "morgan": "^1.8.2",
     "node-sass": "^4.5.3",
